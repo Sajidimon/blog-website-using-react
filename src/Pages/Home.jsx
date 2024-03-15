@@ -1,3 +1,4 @@
+import { useLoaderData } from "react-router-dom";
 import Contentarea from "../Layouts/Content/Contentarea";
 import Header from "../Layouts/Header/Header";
 import NewsTicker from "../Layouts/Header/NewsTicker";
@@ -7,6 +8,8 @@ import Rightsidebar from "../Layouts/Sidebar/Rightsidebar";
 
 
 const Home = () => {
+
+    const news = useLoaderData();
     return (
         <>
             <Header></Header>
@@ -17,7 +20,9 @@ const Home = () => {
                     <Leftsidebar></Leftsidebar>
                 </div>
                 <div className="md:col-span-2">
-                    <Contentarea></Contentarea>
+                    {
+                        news.map(anews => <Contentarea key={anews._id} news={anews}></Contentarea>)
+                    }
                 </div>
                 <div className="border">
                     <Rightsidebar></Rightsidebar>
